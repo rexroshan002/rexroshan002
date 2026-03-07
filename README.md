@@ -67,7 +67,7 @@ Explore the repositories below for documentation, implementation details, and pr
 ## 📫 Connect
 
 - GitHub: https://github.com/rexroshan002  
-- LinkedIn: (Add your LinkedIn profile here)
+- LinkedIn: www.linkedin.com/in/rexroshan002
 
 ---
 
