@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Ahshve Roshan - Web Developer and Data Analyst Portfolio." />
+  <title>Ahshve Roshan — FORGE</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Custom cursor -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <div class="bg-stack" aria-hidden="true">
+    <div class="bg-base"></div>
+    <div class="bg-grain"></div>
+    <div class="bg-vignette"></div>
+    <div class="hero-streak"></div>
+  </div>
+
+  <!-- Ambient ember particles -->
+  <canvas id="ember-canvas" class="ember-fixed" aria-hidden="true"></canvas>
+
+  <canvas id="webgl-canvas" class="webgl-fixed"></canvas>
+
+  <nav class="nav" aria-label="Main Navigation">
+    <a href="#intro" class="logo" data-magnetic>AR</a>
+    <ul>
+      <li><a href="#hero" class="nav-link" data-magnetic>Hero</a></li>
+      <li><a href="#about" class="nav-link" data-magnetic>About</a></li>
+      <li><a href="#projects" class="nav-link" data-magnetic>Projects</a></li>
+      <li><a href="#ai-tools" class="nav-link" data-magnetic>AI Tools</a></li>
+      <li><a href="#skills" class="nav-link" data-magnetic>Stack</a></li>
+      <li><a href="#contact" class="nav-link" data-magnetic>Contact</a></li>
+    </ul>
+  </nav>
+
+  <section id="intro" class="intro">
+    <div class="intro-inner">
+      <div class="intro-eyebrow">
+        <span class="eyebrow-line"></span>
+        <span class="eyebrow-text">Portfolio · 2026</span>
+      </div>
+      <h1><span id="typed"></span></h1>
+      <div class="intro-coordinates">
+        <span>12.9716° N</span>
+        <span class="coord-sep">·</span>
+        <span>77.5946° E</span>
+      </div>
+    </div>
+    <div class="bg-shooting-stars" aria-hidden="true">
+      <span></span><span></span><span></span>
+    </div>
+    <div class="scroll-indicator" aria-hidden="true">
+      <span class="scroll-label">Scroll</span>
+      <span class="scroll-line"></span>
+    </div>
+  </section>
+
+  <section id="hero" class="hero">
+    <div class="hero-content">
+      <div class="hero-tag">
+        <span class="tag-bracket">[</span>
+        <span class="tag-text">Available for work</span>
+        <span class="tag-bracket">]</span>
+      </div>
+      <h2 class="hero-name">
+        <span class="name-line" data-text="Ahshve">Ahshve</span>
+        <span class="name-line" data-text="Roshan">Roshan</span>
+      </h2>
+      <p class="hero-role">Web Developer · Data Analyst</p>
+      <div class="hero-divider"></div>
+      <p class="hero-loc">Bangalore, IN</p>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <div class="text">
+      <p class="about-label">— About</p>
+      <h2 class="about-title">
+        <span class="split-word">Builder.</span><br />
+        <em class="split-word">Analyst.</em>
+      </h2>
+      <p class="about-body">
+        Stack-agnostic developer and data analyst based in Bangalore.
+        I build with whatever the problem demands and ship with AI as a force multiplier.
+      </p>
+      <div class="about-stats">
+        <div class="stat-item">
+          <span class="stat-num" data-count="6">0</span>
+          <span class="stat-label">Projects</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num" data-count="5">0</span>
+          <span class="stat-label">AI Tools</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num" data-count="12">0</span>
+          <span class="stat-label">Technologies</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="projects">
+    <div class="section-header">
+      <span class="section-index">02</span>
+      <h2 class="section-title" data-scan>Projects</h2>
+    </div>
+    <div class="projects-grid">
+      
+      <div class="project-card" data-tilt>
+        <div class="card-corner tl"></div>
+        <div class="card-corner tr"></div>
+        <div class="card-corner bl"></div>
+        <div class="card-corner br"></div>
+        <span class="number">01</span>
+        <h3>Contacts Manager</h3>
+        <p class="stack">React · Node.js · Railway · Vercel</p>
+        <p class="desc">Full-stack contact management app with REST API backend.</p>
+        <a href="https://contacts-manager-app-delta.vercel.app/" target="_blank" rel="noopener noreferrer" class="card-link" data-magnetic>View Live →</a>
+      </div>
+
+      <div class="project-card" data-tilt>
+        <div class="card-corner tl"></div>
+        <div class="card-corner tr"></div>
+        <div class="card-corner bl"></div>
+        <div class="card-corner br"></div>
+        <span class="number">02</span>
+        <h3>Sample Projects</h3>
+        <p class="stack">HTML · CSS · Vanilla JS</p>
+        <p class="desc">Collection of mini UI experiments and components.</p>
+        <a href="https://github.com/rexroshan002/Sample-Projects" target="_blank" rel="noopener noreferrer" class="card-link" data-magnetic>View Repo →</a>
+      </div>
+
+      <div class="project-card" data-tilt>
+        <div class="card-corner tl"></div>
+        <div class="card-corner tr"></div>
+        <div class="card-corner bl"></div>
+        <div class="card-corner br"></div>
+        <span class="number">03</span>
+        <h3>Interactive Cursor UI</h3>
+        <p class="stack">Vanilla JS</p>
+        <p class="desc">Custom cursor interactions and motion effects.</p>
+        <a href="https://github.com/rexroshan002/interactive-cursor-ui" target="_blank" rel="noopener noreferrer" class="card-link" data-magnetic>View Repo →</a>
+      </div>
+
+      <div class="project-card" data-tilt>
+        <div class="card-corner tl"></div>
+        <div class="card-corner tr"></div>
+        <div class="card-corner bl"></div>
+        <div class="card-corner br"></div>
+        <span class="number">04</span>
+        <h3>AppachieeApp</h3>
+        <p class="stack">React Native · Firebase</p>
+        <p class="desc">Mobile app — currently in progress.</p>
+        <a href="https://github.com/rexroshan002/AppachieeApp" target="_blank" rel="noopener noreferrer" class="card-link" data-magnetic>View Repo →</a>
+      </div>
+
+      <div class="project-card" data-tilt>
+        <div class="card-corner tl"></div>
+        <div class="card-corner tr"></div>
+        <div class="card-corner bl"></div>
+        <div class="card-corner br"></div>
+        <span class="number">05</span>
+        <h3>Hospital Analytics</h3>
+        <p class="stack">Python · Pandas · Power BI</p>
+        <p class="desc">Healthcare data analysis with synthetic dataset.</p>
+        <a href="https://github.com/rexroshan002/hospital-analytics" target="_blank" rel="noopener noreferrer" class="card-link" data-magnetic>View Repo →</a>
+      </div>
+
+      <div class="project-card" data-tilt>
+        <div class="card-corner tl"></div>
+        <div class="card-corner tr"></div>
+        <div class="card-corner bl"></div>
+        <div class="card-corner br"></div>
+        <span class="number">06</span>
+        <h3>Data Analysis Dashboard</h3>
+        <p class="stack">JS · Chart.js · Python · Pandas</p>
+        <p class="desc">Interactive data visualization dashboard.</p>
+        <a href="https://github.com/rexroshan002/data-analysis-dashboard" target="_blank" rel="noopener noreferrer" class="card-link" data-magnetic>View Repo →</a>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="ai-tools" class="ai-tools">
+    <div class="section-header">
+      <span class="section-index">03</span>
+      <h2 class="section-title" data-scan>AI Stack</h2>
+    </div>
+    <p class="about-label">— Neural Integration</p>
+    
+    <div class="ai-grid">
+      <a href="https://www.anthropic.com/claude" target="_blank" rel="noopener noreferrer" class="ai-tool-card" data-magnetic>
+        <div class="ai-icon-wrapper">
+          <img src="https://cdn.simpleicons.org/claude/f5a623" alt="Claude Logo" class="ai-logo" />
+        </div>
+        <div class="ai-content">
+          <h3>Claude</h3>
+          <p>Architecture & Code Review</p>
+        </div>
+        <span class="ai-arrow">→</span>
+      </a>
+
+      <a href="https://www.deepseek.com/" target="_blank" rel="noopener noreferrer" class="ai-tool-card" data-magnetic>
+        <div class="ai-icon-wrapper">
+          <img src="https://cdn.simpleicons.org/deepseek/f5a623" alt="DeepSeek" class="ai-logo" />
+        </div>
+        <div class="ai-content">
+          <h3>DeepSeek</h3>
+          <p>Logic & Reasoning</p>
+        </div>
+        <span class="ai-arrow">→</span>
+      </a>
+
+      <a href="https://gemini.google.com/" target="_blank" rel="noopener noreferrer" class="ai-tool-card" data-magnetic>
+        <div class="ai-icon-wrapper">
+          <img src="https://cdn.simpleicons.org/googlegemini/f5a623" alt="Gemini Logo" class="ai-logo" />
+        </div>
+        <div class="ai-content">
+          <h3>Gemini</h3>
+          <p>Validation & Research</p>
+        </div>
+        <span class="ai-arrow">→</span>
+      </a>
+
+      <a href="https://www.perplexity.ai/" target="_blank" rel="noopener noreferrer" class="ai-tool-card" data-magnetic>
+        <div class="ai-icon-wrapper">
+          <img src="https://cdn.simpleicons.org/perplexity/f5a623" alt="Perplexity Logo" class="ai-logo" />
+        </div>
+        <div class="ai-content">
+          <h3>Perplexity</h3>
+          <p>Real-time Documentation</p>
+        </div>
+        <span class="ai-arrow">→</span>
+      </a>
+
+      <a href="https://github.com/features/copilot" target="_blank" rel="noopener noreferrer" class="ai-tool-card" data-magnetic>
+        <div class="ai-icon-wrapper">
+          <img src="https://cdn.simpleicons.org/githubcopilot/f5a623" alt="Copilot Logo" class="ai-logo" />
+        </div>
+        <div class="ai-content">
+          <h3>Copilot</h3>
+          <p>Pair Programming</p>
+        </div>
+        <span class="ai-arrow">→</span>
+      </a>
+
+      <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer" class="ai-tool-card" data-magnetic>
+        <div class="ai-icon-wrapper">
+          <img src="https://cdn.simpleicons.org/openai/f5a623" alt="OpenAI Logo" class="ai-logo" />
+        </div>
+        <div class="ai-content">
+          <h3>ChatGPT</h3>
+          <p>Rapid Ideation</p>
+        </div>
+        <span class="ai-arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+  <section id="skills" class="skills">
+    <div class="section-header">
+      <span class="section-index">04</span>
+      <h2 class="section-title" data-scan>System Stack</h2>
+    </div>
+    
+    <div class="stack-container">
+      <div class="stack-layer">
+        <p class="about-label">— Core Engine</p>
+        <div class="skill-tags">
+          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noopener noreferrer" class="skill-tag" data-magnetic>JavaScript (ES6+)</a>
+          <a href="https://docs.python.org/3/" target="_blank" rel="noopener noreferrer" class="skill-tag" data-magnetic>Python</a>
+          <a href="https://www.postgresql.org/docs/" target="_blank" rel="noopener noreferrer" class="skill-tag" data-magnetic>PostgreSQL</a>
+          <a href="https://dev.mysql.com/doc/" target="_blank" rel="noopener noreferrer" class="skill-tag" data-magnetic>MySQL</a>
+        </div>
+      </div>
+
+      <div class="stack-layer">
+        <p class="about-label">— Presentation</p>
+        <div class="skill-tags">
+          <a href="https://react.dev/" target="_blank" rel="noopener noreferrer" class="skill-tag" data-magnetic>React.js</a>
+          <a href="https://threejs.org/docs/" target="_blank" rel="noopener noreferrer" class="skill-tag" data-magnetic>Three.js</a>
+          <a href="https://gsap.com/docs/v3/" target="_blank" rel="noopener noreferrer" class="skill-tag" data-magnetic>GSAP</a>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank" rel="noopener noreferrer" class="skill-tag" data-magnetic>CSS3 / Flexbox</a>
+        </div>
+      </div>
+
+      <div class="stack-layer">
+        <p class="about-label">— Infrastructure</p>
+        <div class="skill-tags">
+          <a href="https://nodejs.org/en/docs/" target="_blank" rel="noopener noreferrer" class="skill-tag" data-magnetic>Node.js</a>
+          <a href="https://expressjs.com/" target="_blank" rel="noopener noreferrer" class="skill-tag" data-magnetic>Express.js</a>
+          <a href="https://docs.github.com/en" target="_blank" rel="noopener noreferrer" class="skill-tag" data-magnetic>Git / GitHub</a>
+          <a href="https://vercel.com/docs" target="_blank" rel="noopener noreferrer" class="skill-tag" data-magnetic>Vercel</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="section-header">
+      <span class="section-index">05</span>
+    </div>
+    <p class="about-label">— Contact</p>
+    <h2 class="contact-title">
+      <span class="contact-word">Let's Build</span><br />
+      <em class="contact-word">Something.</em>
+    </h2>
+    <div class="contact-links">
+      <a href="mailto:rexroshan002@gmail.com" class="contact-email" data-magnetic>rexroshan002@gmail.com</a>
+      <a href="https://github.com/rexroshan002" target="_blank" rel="noopener noreferrer" class="contact-github" data-magnetic>GitHub →</a>
+    </div>
+    <div class="contact-noise" aria-hidden="true"></div>
+  </section>
+
+  <footer class="footer">
+    <span>© 2026 Ahshve Roshan</span>
+   <div class="playground-wrapper">
+          <button id="pg-trigger" class="pg-btn" data-magnetic>Playground</button>
+          <div id="pg-dropdown" class="pg-dropdown">
+            <button class="pg-opt" data-app="typing">Typing Speed Test</button>
+            <button class="pg-opt" data-app="cleaner">Data Cleaner</button>
+            <button class="pg-opt" data-app="calculator">Smart Calculator</button>
+            <button class="pg-opt" data-app="canvas">Drawing Board</button>
+            <button class="pg-opt" data-app="puzzle">Puzzle Game</button>
+            <button class="pg-opt" data-app="quiz">Quiz Game</button>
+          </div>
+        </div>
+    <span>Crafted with intention</span>
+  </footer>
+  <div id="pg-container" class="pg-container hidden">
+    <div class="pg-overlay" id="pg-overlay"></div>
+    
+    <div class="pg-window">
+      <div class="pg-header">
+        <h3 id="pg-title" class="pg-title">App Title</h3>
+        <button id="pg-close" class="pg-close" data-magnetic>&times;</button>
+      </div>
+      <div id="pg-content" class="pg-content">
+        </div>
+    </div>
+  </div>
+
+  </body>
+  <script src="main.js"></script>
+</body>
+</html>
