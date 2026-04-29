@@ -517,24 +517,62 @@ class Application {
 
   loadAssets() {
     const loader = new THREE.GLTFLoader();
-    loader.load('assets/going_merry.glb', (gltf) => {
-      this.activeModel = gltf.scene;
+    const loadingEl = document.getElementById('model-loading');
 
-      const box    = new THREE.Box3().setFromObject(this.activeModel);
-      const center = box.getCenter(new THREE.Vector3());
-      const size   = box.getSize(new THREE.Vector3());
-      this.activeModel.position.sub(center);
-      this.initialModelY = this.activeModel.position.y;
+    loader.load('assets/going_merry.glb', 
+      (gltf) => {
+        this.activeModel = gltf.scene;
 
-      this.engine.modelGroup.add(this.activeModel);
+        const box    = new THREE.Box3().setFromObject(this.activeModel);
+        const center = box.getCenter(new THREE.Vector3());
+        const size   = box.getSize(new THREE.Vector3());
+        this.activeModel.position.sub(center);
+        this.initialModelY = this.activeModel.position.y;
 
-      const maxDim   = Math.max(size.x, size.y, size.z);
-      const baseScale = (window.innerWidth < 768 ? 1.8 : 2.5) / maxDim;
-      new SpatialChoreographer(this.engine.modelGroup, this.activeModel, baseScale);
+        this.engine.modelGroup.add(this.activeModel);
 
-      ScrollTrigger.refresh(); 
-      this.loop();
-    }, undefined, (err) => console.error('GLB failed to load:', err));
+        const maxDim   = Math.max(size.x, size.y, size.z);
+        const baseScale = (window.innerWidth < 768 ? 1.8 : 2.5) / maxDim;
+        new SpatialChoreographer(this.engine.modelGroup, this.activeModel, baseScale);
+
+        ScrollTrigger.refresh(); 
+        this.loop();
+
+        // Hide loading indicator
+        if (loadingEl) loadingEl.style.display = 'none';
+      }, 
+      undefined, 
+      (err) => {
+        console.warn('Going Merry failed to load, using fallback geometry:', err);
+        // Hide loading indicator and show fallback
+        if (loadingEl) loadingEl.style.display = 'none';
+
+        // Create a fallback 3D mesh (amber dodecahedron)
+        const geo = new THREE.DodecahedronGeometry(1.2, 1);
+        const mat = new THREE.MeshStandardMaterial({
+          color: 0xf5a623,
+          metalness: 0.6,
+          roughness: 0.3
+        });
+        const fallbackMesh = new THREE.Mesh(geo, mat);
+        fallbackMesh.castShadow = false;
+        fallbackMesh.receiveShadow = false;
+
+        this.activeModel = fallbackMesh;
+        this.initialModelY = 0; // no offset needed
+
+        this.engine.modelGroup.add(this.activeModel);
+
+        const box = new THREE.Box3().setFromObject(this.activeModel);
+        const size = box.getSize(new THREE.Vector3());
+        const maxDim = Math.max(size.x, size.y, size.z);
+        const baseScale = (window.innerWidth < 768 ? 1.8 : 2.5) / maxDim;
+        new SpatialChoreographer(this.engine.modelGroup, this.activeModel, baseScale);
+
+        ScrollTrigger.refresh();
+        this.loop();
+      }
+    );
   }
 
   loop = () => {
@@ -1605,31 +1643,39 @@ class PuzzleApp {
         'assets/easy-goku.jpg',
         'assets/easy-luffy.jpg',
         'assets/easy-daredevil.jpg',
-        'assets/easy-subaru.jpg' // Assuming you add a 4th
+        'assets/easy-subaru.jpg'
       ],
       4: [
         'assets/med-aot.jpg',
         'assets/med-spiderman.jpg',
         'assets/med-cyberpunk.jpg',
-        'assets/med-portrait.jpg' // Assuming you add a 4th
+        'assets/med-portrait.jpg'
       ],
       5: [
         'assets/hard-gojo.jpg',
         'assets/hard-squidgame.jpg',
         'assets/hard-vader.jpg',
-        'assets/hard-scenery.jpg' // Matches your 7th wallpaperflare crop
+        'assets/hard-scenery.jpg'
       ]
     };
     
     this.currentImgIndex = 0;
+    this.failedImages = new Set(); // track broken URLs
     this.preloadAllImages();
     
     this.handleKeyboard = this.handleKeyboard.bind(this);
   }
 
   preloadAllImages() {
-    Object.values(this.imagePools).flat().forEach(src => {
-      const img = new Image(); img.src = src;
+    // Preload each image and mark failed ones so we can fallback later
+    const allSources = Object.values(this.imagePools).flat();
+    allSources.forEach(src => {
+      const img = new Image();
+      img.onerror = () => {
+        this.failedImages.add(src);
+        console.warn(`Puzzle image failed to load: ${src}`);
+      };
+      img.src = src;
     });
   }
   
@@ -1764,6 +1810,16 @@ class PuzzleApp {
     return `${m}:${s}`;
   }
 
+  // Returns a solid colour data URL as fallback (amber/dark theme)
+  getFallbackBackground() {
+    return 'data:image/svg+xml,' + encodeURIComponent(`
+      <svg xmlns="http://www.w3.org/2000/svg" width="400" height="400">
+        <rect width="400" height="400" fill="#1a1a2e"/>
+        <text x="200" y="200" text-anchor="middle" fill="#f5a623" font-size="24" font-family="monospace">?</text>
+      </svg>
+    `);
+  }
+
   setupGrid() {
     this.stopTimer();
     this.timeElapsed = 0;
@@ -1774,9 +1830,13 @@ class PuzzleApp {
     const totalTiles = N * N;
     
     this.tiles = Array.from({length: totalTiles}, (_, i) => i);
-    const imgUrl = this.imagePools[this.gridSize][this.currentImgIndex];
+    let imgUrl = this.imagePools[this.gridSize][this.currentImgIndex];
+    // Swap to fallback if the current image is known to be broken
+    if (this.failedImages.has(imgUrl)) {
+      imgUrl = this.getFallbackBackground();
+    }
     
-    // Set background of the separated preview layer instead of the grid
+    // Set background of the separated preview layer
     this.previewLayer.style.backgroundImage = `url('${imgUrl}')`;
     
     for (let i = 0; i < totalTiles; i++) {

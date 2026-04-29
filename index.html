@@ -34,7 +34,13 @@
   <!-- Ambient ember particles -->
   <canvas id="ember-canvas" class="ember-fixed" aria-hidden="true"></canvas>
 
+  <!-- WebGL 3D scene (Going Merry) -->
   <canvas id="webgl-canvas" class="webgl-fixed"></canvas>
+
+  <!-- Loading indicator for the 3D model (hidden once loaded) -->
+  <div id="model-loading" style="position:fixed; bottom:30px; left:50%; transform:translateX(-50%); z-index:5; color: var(--accent); font-family: var(--font-body); font-size: 0.7rem; letter-spacing: 0.2em; opacity: 0.6; pointer-events: none;">
+    LOADING 3D ASSETS...
+  </div>
 
   <nav class="nav" aria-label="Main Navigation">
     <a href="#intro" class="logo" data-magnetic>AR</a>
@@ -330,33 +336,33 @@
 
   <footer class="footer">
     <span>© 2026 Ahshve Roshan</span>
-   <div class="playground-wrapper">
-          <button id="pg-trigger" class="pg-btn" data-magnetic>Playground</button>
-          <div id="pg-dropdown" class="pg-dropdown">
-            <button class="pg-opt" data-app="typing">Typing Speed Test</button>
-            <button class="pg-opt" data-app="cleaner">Data Cleaner</button>
-            <button class="pg-opt" data-app="calculator">Smart Calculator</button>
-            <button class="pg-opt" data-app="canvas">Drawing Board</button>
-            <button class="pg-opt" data-app="puzzle">Puzzle Game</button>
-            <button class="pg-opt" data-app="quiz">Quiz Game</button>
-          </div>
-        </div>
+    <div class="playground-wrapper">
+      <button id="pg-trigger" class="pg-btn" data-magnetic>Playground</button>
+      <div id="pg-dropdown" class="pg-dropdown">
+        <button class="pg-opt" data-app="typing">Typing Speed Test</button>
+        <button class="pg-opt" data-app="cleaner">Data Cleaner</button>
+        <button class="pg-opt" data-app="calculator">Smart Calculator</button>
+        <button class="pg-opt" data-app="canvas">Drawing Board</button>
+        <button class="pg-opt" data-app="puzzle">Puzzle Game</button>
+        <button class="pg-opt" data-app="quiz">Quiz Game</button>
+      </div>
+    </div>
     <span>Crafted with intention</span>
   </footer>
+
   <div id="pg-container" class="pg-container hidden">
     <div class="pg-overlay" id="pg-overlay"></div>
-    
     <div class="pg-window">
       <div class="pg-header">
         <h3 id="pg-title" class="pg-title">App Title</h3>
         <button id="pg-close" class="pg-close" data-magnetic>&times;</button>
       </div>
       <div id="pg-content" class="pg-content">
-        </div>
+        <!-- Mini‑app content injected here -->
+      </div>
     </div>
   </div>
 
-  </body>
   <script src="main.js"></script>
 </body>
 </html>

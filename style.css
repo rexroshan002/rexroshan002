@@ -998,6 +998,7 @@ body.pg-open .cursor-outline { display: none !important; } /* Hide custom cursor
 }
 .vc-node:hover .vc-add-btn { opacity: 1; transform: translateX(-50%) scale(1); }
 .vc-add-btn:hover { background: var(--accent); color: var(--bg); transform: translateX(-50%) scale(1.15) !important; }
+
 /* ============================================
    PLAYGROUND: DRAWING BOARD (SKRIBBL STYLE)
    ============================================ */
@@ -1038,6 +1039,7 @@ body.pg-open .cursor-outline { display: none !important; } /* Hide custom cursor
   display: block; width: 100%; height: 100%; 
   touch-action: none; /* Prevents scrolling while drawing on touch devices */
 }
+
 /* ============================================
    PLAYGROUND: PUZZLE GAME (UPGRADED)
    ============================================ */
@@ -1079,62 +1081,15 @@ body.pg-open .cursor-outline { display: none !important; } /* Hide custom cursor
   border-radius: 8px;
 }
 .puzzle-win-overlay.active { opacity: 1; pointer-events: auto; }
+
 /* Puzzle Hold-to-Preview effect */
 .puzzle-grid.preview-active .puzzle-tile {
   opacity: 0;
   transition: opacity 0.2s ease;
 }
-/* Quiz Category Tags */
-.quiz-topic-btn {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid var(--border-dim);
-  color: var(--text);
-  padding: 8px 16px;
-  border-radius: 20px;
-  cursor: pointer;
-  font-family: var(--font-body);
-  font-size: 0.85rem;
-  transition: all 0.2s ease;
-}
-.quiz-topic-btn:hover {
-  background: rgba(255,255,255,0.1);
-}
-.quiz-topic-btn.active {
-  background: var(--accent-dim);
-  box-shadow: 0 0 10px var(--accent-dim);
-}
-/* ============================================
-   QUIZ UPGRADES: Glitches & Terminals
-   ============================================ */
-.quiz-topic-btn {
-  background: rgba(255,255,255,0.03); border: 1px solid var(--border-dim);
-  color: var(--muted); padding: 10px 18px; border-radius: 6px;
-  cursor: pointer; font-family: var(--font-body); font-size: 0.85rem;
-  transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
-  display: flex; flex-direction: column; align-items: center; gap: 4px;
-}
-.quiz-topic-btn:hover { background: rgba(255,255,255,0.08); color: var(--text); transform: translateY(-2px); }
-.quiz-topic-btn.active { 
-  background: rgba(245,166,35,0.1); border-color: var(--accent); 
-  color: var(--accent); box-shadow: 0 4px 15px rgba(245,166,35,0.2); 
-}
 
-/* Glitch effect for the 50/50 Hack */
-.glitch-out {
-  animation: hackGlitch 0.4s cubic-bezier(.25, .46, .45, .94) both;
-  pointer-events: none;
-}
-@keyframes hackGlitch {
-  0% { transform: translate(0) skew(0deg); opacity: 1; filter: drop-shadow(0 0 0 red); }
-  20% { transform: translate(-10px, 5px) skew(-20deg); opacity: 0.8; filter: drop-shadow(5px 0 0 red); }
-  40% { transform: translate(10px, -5px) skew(20deg); opacity: 0.9; filter: drop-shadow(-5px 0 0 blue); }
-  60% { transform: translate(-5px, 2px) skew(-10deg); opacity: 0.4; filter: drop-shadow(0 0 0 transparent); }
-  100% { transform: translate(0) scale(0.9); opacity: 0; visibility: hidden; }
-}
-
-.scramble-text { font-family: var(--font-body); text-shadow: 0 0 8px rgba(255,255,255,0.3); }
 /* ============================================
-   QUIZ UPGRADES: Glitches & Terminals
+   QUIZ UPGRADES: Glitches & Terminals (clean)
    ============================================ */
 .quiz-topic-btn {
   background: rgba(255,255,255,0.03); border: 1px solid var(--border-dim);
